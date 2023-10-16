@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "products_cate";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Product>
+@foreach (var item in Model)
+{
+    <div class="col-lg-3 col-md-4 col-sm-6 mix high_up">
+        <div class="featured__item">
+            <div class="featured__item__pic set-bg" data-setbg="@Url.Content("../img-source/" + item.Thumb)">
+                <ul class="featured__item__pic__hover">
+                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                </ul>
+            </div>
+            <div class="featured__item__text">
+                <h6><a href="#">@item.ProductName</a></h6>
+                <h5>@item.Price</h5>
+            </div>
+        </div>
+    </div>
+}
+<div class="product__pagination" style="margin-left: 1em">
+    @Html.PagedListPager(Model, page=>Url.Action("products_cate", new{page = page, catId = ViewBag.catId}))
+</div>
